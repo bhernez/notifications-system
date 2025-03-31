@@ -2,15 +2,15 @@
 
 ## Overview
 
-This application is a scalable, extensible notification system designed to send messages through various channels (email, SMS, push). It respects user preferences and uses background jobs for asynchronous processing.
+This Rails application implements a scalable notification system that supports delivering messages to users via multiple channels (SMS, Email, Push). The system is designed for extensibility, respects user preferences, and offloads delivery to background jobs for asynchronous processing.
 
 ## Requirements
 
 - Ruby 3.4.1
 - Rails 8.0.2
 - PostgreSQL
-- Redis (for background jobs)
-- Async Job Adapter (Rails 7+ built-in)
+- Redis (for job scheduling)
+- Async Adapter (Rails 7+ default)
 
 ## Setup
 
@@ -21,64 +21,108 @@ bin/rails db:setup
 
 ## Usage
 
-### Sending Bulk Notifications
+### API Endpoints
 
-You can send notifications to multiple users with:
+#### `POST /notifications`
 
-```ruby
-BulkSendNotification.call(
-  user_ids: [<user_id_1>, <user_id_2>],
-  content: "Your message here",
-  channel: "sms", # or "email", "push"
-  style: "alert"  # or "reminder", "promotional"
-)
-```
+Creates a notification for a single user.
 
-Only users with a matching preference for the specified channel will receive the notification.
-
-### Notification Preferences
-
-Each user has a notification preference record with booleans like:
-
-```ruby
+Example payload:
+```json
 {
-  email_notifications: true,
-  sms_notifications: false,
-  push_notifications: true
+  "user_id": "uuid-or-id",
+  "content": "Hello World!",
+  "channel": "sms",
+  "style": "alert"
 }
 ```
 
-You can retrieve or update preferences via the `UserNotificationPreference` model.
+#### `POST /notifications/bulk`
 
-### Background Processing
+Creates notifications for multiple users at once using the `BulkSendNotification` command.
 
-Notifications are sent using background jobs via `Notifications::ManagerJob`. Jobs are enqueued asynchronously and will pick up `pending` notifications and dispatch them through the correct sender (e.g., `Notifications::Sender::Sms`).
+Example payload:
+```json
+{
+  "user_ids": ["uuid1", "uuid2"],
+  "content": "System maintenance notice",
+  "channel": "email",
+  "style": "reminder"
+}
+```
+
+#### `GET /notifications/:id`
+
+Returns the status and metadata of a given notification.
 
 ### Notification Lifecycle
 
-1. `BulkSendNotification` creates a `Notification` record with `status: "pending"`.
-2. `ManagerJob` enqueues based on pending notifications.
-3. The sender delivers the notification and updates status to `sent` or `failed`.
+1. A notification is created with status `pending`.
+2. A background job (`Notifications::ManagerJob`) is scheduled.
+3. The job finds the `pending` notification and sends it via the correct `Sender` class.
+4. The notification status is updated to `sent` or `failed`.
 
-## Testing
+### User Notification Preferences
 
-To run tests:
+User preferences are stored in the `UserNotificationPreference` model and allow for per-channel configuration:
 
-```bash
-bundle exec rspec
+Example:
+```json
+{
+  "channel": "sms",
+  "preferences": {
+    "enabled": true,
+    "style": ["alert", "reminder"]
+  }
+}
 ```
 
-## Extending
+These preferences are respected during delivery — if a user has disabled a channel or filtered styles, the notification is skipped.
+
+### Background Job System
+
+- Uses ActiveJob's Async adapter.
+- Each notification is handled individually via `Notifications::ManagerJob`.
+- Background jobs ensure scalability and fault isolation.
+
+## Development
+
+### Running Tests
+
+```bash
+bundle exec rails test
+```
+
+Includes tests for:
+
+- API endpoints (`NotificationsController`)
+- Command logic (`BulkSendNotification`)
+- Delivery jobs (`ManagerJob`)
+- Preference-based filtering
+
+### Extending the System
 
 To add a new channel (e.g., in-app):
 
-1. Create a sender class under `Notifications::Sender::<NewChannel>`.
-2. Add the option to `UserNotificationPreference`.
-3. Whitelist the channel in validations within `BulkSendNotification::Form`.
+1. Create a new sender class in `app/lib/notifications/sender/<channel>.rb`.
+2. Update `UserNotificationPreference` to include the new channel.
+3. Update validation logic in `BulkSendNotification::Form` if necessary.
+4. Plug in the sender via `Notifications::Manager`.
 
-## Design Notes
+## Design Highlights
 
-- Commands encapsulate the business logic.
-- Validations are handled in form objects.
-- Jobs decouple delivery from user interaction.
-- Easily extendable to support more types/channels in the future.
+- Command pattern via `CommandBase` and `CommandForm`
+- Dynamic form validation
+- Per-user channel preferences
+- Job-based delivery queue
+- Easily extensible architecture
+
+## Known Improvements (WIP)
+
+- Add throttling or deduplication filters
+- Batch job execution for bulk messages
+- Retry or fallback mechanism for failed deliveries
+- API authentication and rate-limiting
+
+---
+Built for scalability, tested for reliability, and designed for growth.

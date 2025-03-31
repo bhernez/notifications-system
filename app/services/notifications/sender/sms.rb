@@ -10,7 +10,7 @@ module Notifications
         puts "Notifications::Sender::Sms: About to send SMS"
         normalized_phone
         puts "Notifications::Sender::Sms: Sending SMS..."
-        sleep 3
+        sleep 3 unless Rails.env.test?
         puts "Notifications::Sender::Sms: SMS was sent!"
         true
       end

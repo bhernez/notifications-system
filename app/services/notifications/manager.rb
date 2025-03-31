@@ -34,7 +34,22 @@ module Notifications
     def should_send?(user, notification)
       # Validations about the user's preferences
       # This could call specific validation classes
-      !notification.sent?
+      preference = UserNotificationPreference.find_by(
+        user_id: user.id,
+        channel: notification.channel
+      )
+
+      return false if preference.nil?
+
+      # Default behavior: do not send if explicitly disabled
+      enabled = preference.preferences.fetch("enabled", true)
+      return false unless enabled
+
+      # Check if the user only wants specific styles
+      allowed_styles = preference.preferences["style"]
+      return false if allowed_styles.present? && !allowed_styles.include?(notification.style)
+
+      true
     end
 
     def retrieve_sender(notification)

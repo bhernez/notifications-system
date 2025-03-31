@@ -8,8 +8,8 @@
 # { user_id: UUID, channel: "sms", preferences: { enabled: false, number: "+1987654320" } }
 # { user_id: UUID, channel: "push", preferences: { style: ["alert", "reminder"], device_registration_ids: [] } }
 #
-# If a user has no preference for a channel, it means that the user does not want to receive notifications
-# through that channel.
+# If a user has no preference for a channel, or it has the `enabled` property as `false`, it means that the user
+# does not want to receive notifications through that channel.
 class UserNotificationPreference < ApplicationRecord
   belongs_to :user
 

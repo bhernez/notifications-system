@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41292e41-4930-4a02-a34e-30b05607279a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/commands/bulk_send_notification.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/commands/command_base.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/commands/command_form.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/jobs/notifications/manager_job.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/lib/response.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/notifications/sender/sms.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/commands/bulk_send_notification.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/commands/bulk_send_notification.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/notifications_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/notifications_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/jobs/notifications/manager_job.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/jobs/notifications/manager_job.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/notification.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/notification.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user_notification_preference.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_notification_preference.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/notifications/manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notifications/manager.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/notifications/sender/sms.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notifications/sender/sms.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/notifications_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/notifications_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/notifications.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/notifications.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_helper.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Ruby Class" />
+        <option value="Minitest" />
       </list>
     </option>
   </component>
@@ -30,6 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "benignohdez-jt"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:bhernez/notifications-system.git",
+    "accountId": "f5f78788-a6b3-4c29-b771-7b9b7c5f744c"
+  }
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -59,6 +80,11 @@
     "Rails.innovatrics.executor": "Run",
     "Ruby Console.Rails console: innovatrics-task.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Test::Unit/Shoulda/Minitest.NotificationsControllerTest.executor": "Debug",
+    "Test::Unit/Shoulda/Minitest.test_should_bulk_create_notifications_with_valid_params.executor": "Debug",
+    "Test::Unit/Shoulda/Minitest.test_should_create_and_queue_notification_with_valid_params.executor": "Debug",
+    "Test::Unit/Shoulda/Minitest.test_should_get_create.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test_should_return_error_on_validation_failure.executor": "Debug",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,7 +101,7 @@
       <recent name="$PROJECT_DIR$/app/commands" />
     </key>
   </component>
-  <component name="RunManager" selected="Ruby Console.Rails console: innovatrics-task">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.NotificationsControllerTest">
     <configuration name="Rails console: innovatrics-task" type="IrbRunConfigurationType" factoryName="IRB console" temporary="true">
       <module name="innovatrics-task" />
       <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
@@ -170,14 +196,80 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
       <method v="2" />
     </configuration>
+    <configuration name="NotificationsControllerTest" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+      <module name="innovatrics-task" />
+      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="rbenv: 3.4.1" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/notifications_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$MODULE_DIR$/test/controllers/notifications_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^NotificationsControllerTest(#|::)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_should_bulk_create_notifications_with_valid_params" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+      <module name="innovatrics-task" />
+      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="true" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="rbenv: 3.4.1" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/controllers/notifications_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$MODULE_DIR$/test/controllers/notifications_controller_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test_should_bulk_create_notifications_with_valid_params$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Rails.innovatrics-task" />
       <item itemvalue="Rake.spec: innovatrics-task" />
       <item itemvalue="Rake.test: innovatrics-task" />
       <item itemvalue="Ruby Console.Rails console: innovatrics-task" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.test_should_bulk_create_notifications_with_valid_params" />
+      <item itemvalue="Test::Unit/Shoulda/Minitest.NotificationsControllerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Test::Unit/Shoulda/Minitest.NotificationsControllerTest" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_should_bulk_create_notifications_with_valid_params" />
         <item itemvalue="Ruby Console.Rails console: innovatrics-task" />
       </list>
     </recent_temporary>
@@ -202,7 +294,7 @@
       <workItem from="1742486744374" duration="59000" />
       <workItem from="1742486814138" duration="18121000" />
       <workItem from="1742824825155" duration="20000" />
-      <workItem from="1743191628586" duration="17372000" />
+      <workItem from="1743191628586" duration="26624000" />
     </task>
     <servers />
   </component>
@@ -211,6 +303,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/innovatrics_task@innovatrics_task.rcov" NAME="innovatrics-task Coverage Results" MODIFIED="1742487024556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
-    <SUITE FILE_PATH="coverage/innovatrics_task@Rails_console__innovatrics_task.rcov" NAME="Rails console: innovatrics-task Coverage Results" MODIFIED="1743443643712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@NotificationsControllerTest.rcov" NAME="NotificationsControllerTest Coverage Results" MODIFIED="1743464330133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@Rails_console__innovatrics_task.rcov" NAME="Rails console: innovatrics-task Coverage Results" MODIFIED="1743461621469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@test_should_get_create.rcov" NAME="test_should_get_create Coverage Results" MODIFIED="1743460719544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@test_should_return_error_on_validation_failure.rcov" NAME="test_should_return_error_on_validation_failure Coverage Results" MODIFIED="1743463854111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@test_should_create_and_queue_notification_with_valid_params.rcov" NAME="test_should_create_and_queue_notification_with_valid_params Coverage Results" MODIFIED="1743460948054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@test_should_bulk_create_notifications_with_valid_params.rcov" NAME="test_should_bulk_create_notifications_with_valid_params Coverage Results" MODIFIED="1743464173577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
   </component>
 </project>
