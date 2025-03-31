@@ -157,5 +157,4 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "error", body["status"]
     assert_equal "An unexpected error occurred", body["message"]
   end
-
 end

@@ -46,7 +46,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "mutex_m"
   gem "faker"
-  gem 'mocha'
+  gem "mocha"
 end
 
 gem "uuid7", "~> 0.2.0"

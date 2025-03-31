@@ -1,4 +1,4 @@
-require 'securerandom'
+require "securerandom"
 
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
@@ -11,7 +11,7 @@ class ApplicationRecord < ActiveRecord::Base
   # This wouldn't be necessary if the DB supports UUID data type natively
   # like Postgres
   def maybe_assign_id
-    return if self.class.attribute_types['id'].type != :string
+    return if self.class.attribute_types["id"].type != :string
 
     self.id ||= SecureRandom.uuid_v7
   end

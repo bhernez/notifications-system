@@ -9,7 +9,7 @@ module Notifications
 
       def send_notification(notification)
         result = perform(notification)
-        raise "Result must be a boolean" unless [true, false].include?(result)
+        raise "Result must be a boolean" unless [ true, false ].include?(result)
 
         result
       rescue StandardError => e

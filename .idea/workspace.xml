@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41292e41-4930-4a02-a34e-30b05607279a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/commands/bulk_send_notification.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/commands/bulk_send_notification.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/notifications_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/notifications_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/jobs/notifications/manager_job.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/jobs/notifications/manager_job.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/notification.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/notification.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user_notification_preference.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_notification_preference.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/notifications/manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notifications/manager.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/notifications/sender/sms.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notifications/sender/sms.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/notifications_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/notifications_controller_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fixtures/notifications.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/notifications.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_helper.rb" afterDir="false" />
-    </list>
+    <list default="true" id="41292e41-4930-4a02-a34e-30b05607279a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -294,7 +279,7 @@
       <workItem from="1742486744374" duration="59000" />
       <workItem from="1742486814138" duration="18121000" />
       <workItem from="1742824825155" duration="20000" />
-      <workItem from="1743191628586" duration="26624000" />
+      <workItem from="1743191628586" duration="26936000" />
     </task>
     <servers />
   </component>
@@ -303,7 +288,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/innovatrics_task@innovatrics_task.rcov" NAME="innovatrics-task Coverage Results" MODIFIED="1742487024556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
-    <SUITE FILE_PATH="coverage/innovatrics_task@NotificationsControllerTest.rcov" NAME="NotificationsControllerTest Coverage Results" MODIFIED="1743464330133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
+    <SUITE FILE_PATH="coverage/innovatrics_task@NotificationsControllerTest.rcov" NAME="NotificationsControllerTest Coverage Results" MODIFIED="1743464540684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
     <SUITE FILE_PATH="coverage/innovatrics_task@Rails_console__innovatrics_task.rcov" NAME="Rails console: innovatrics-task Coverage Results" MODIFIED="1743461621469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
     <SUITE FILE_PATH="coverage/innovatrics_task@test_should_get_create.rcov" NAME="test_should_get_create Coverage Results" MODIFIED="1743460719544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
     <SUITE FILE_PATH="coverage/innovatrics_task@test_should_return_error_on_validation_failure.rcov" NAME="test_should_return_error_on_validation_failure Coverage Results" MODIFIED="1743463854111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="innovatrics-task" />
