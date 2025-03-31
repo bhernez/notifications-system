@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  content: MyText
+  type: 
+  status: MyString
+  channel: MyString
+
+two:
+  user: two
+  content: MyText
+  type: 
+  status: MyString
+  channel: MyString
