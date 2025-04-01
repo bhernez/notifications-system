@@ -21,6 +21,7 @@ This Rails application implements a scalable notification system that supports d
 9. [Design Highlights](#design-highlights)
 10. [Model Relationships](#model-relationships)
 11. [Known Improvements](#known-improvements)
+12. [Dependencies](#dependencies)
 
 ---
 
@@ -28,9 +29,7 @@ This Rails application implements a scalable notification system that supports d
 
 - Ruby 3.4.1
 - Rails 8.0.2
-- PostgreSQL
-- Redis (for job scheduling)
-- Async Adapter (Rails 7+ default)
+- SQLite
 
 ---
 
@@ -165,7 +164,7 @@ These preferences are respected during delivery — if a user has disabled a cha
 
 ## Background Job System
 
-- Uses ActiveJob's Async adapter.
+- Uses Solid Queue with ActiveJob.
 - Each notification is processed individually via `Notifications::ManagerJob`.
 - Background jobs ensure decoupled, reliable delivery.
 
@@ -246,6 +245,14 @@ classDiagram
 - Batch job execution for bulk messages
 - Retry or fallback mechanisms
 - API authentication and rate limiting
+
+---
+
+## Dependencies
+
+- Rails 8.0.2
+- SQLite
+- Solid Queue (for background job processing)
 
 ---
 
