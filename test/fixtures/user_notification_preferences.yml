@@ -1,11 +1,17 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   user: one
-  channel: MyString
-  preferences: 
+  channel: sms
+  preferences:
+    enabled: true
+    number: "+1234567890"
+    style:
+      - alert
+      - reminder
 
 two:
   user: two
-  channel: MyString
-  preferences: 
+  channel: email
+  preferences:
+    enabled: false
+    style:
+      - promotional
