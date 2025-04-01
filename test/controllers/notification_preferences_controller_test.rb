@@ -12,15 +12,19 @@ class UserNotificationPreferencesControllerTest < ActionDispatch::IntegrationTes
   end
 
   test "should create preference" do
-    assert_difference('UserNotificationPreference.count') do
-      post notification_preferences_url(@user), params: { user_notification_preference: { channel: @preference.channel, preferences: @preference.preferences } }, as: :json
+    assert_difference("UserNotificationPreference.count") do
+      post notification_preferences_url(@user),
+           params: {
+             user_notification_preference: { channel: @preference.channel, preferences: @preference.preferences }
+           },
+           as: :json
     end
 
     assert_response 201
   end
 
   test "should not create preference with invalid data" do
-    assert_no_difference('UserNotificationPreference.count') do
+    assert_no_difference("UserNotificationPreference.count") do
       post notification_preferences_url(@user), params: {
         user_notification_preference: { channel: nil, preferences: {} }
       }, as: :json
@@ -45,12 +49,16 @@ class UserNotificationPreferencesControllerTest < ActionDispatch::IntegrationTes
   end
 
   test "should update preference" do
-    patch notification_preference_url(@user, @preference), params: { user_notification_preference: { channel: @preference.channel, preferences: @preference.preferences } }, as: :json
+    patch notification_preference_url(@user, @preference),
+          params: {
+            user_notification_preference: { channel: @preference.channel, preferences: @preference.preferences }
+          },
+          as: :json
     assert_response 200
   end
 
   test "should destroy preference" do
-    assert_difference('UserNotificationPreference.count', -1) do
+    assert_difference("UserNotificationPreference.count", -1) do
       delete notification_preference_url(@user, @preference), as: :json
     end
 

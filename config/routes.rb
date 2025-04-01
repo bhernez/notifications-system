@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :notifications, only: [:show, :create] do
+  resources :notifications, only: [ :show, :create ] do
     collection do
       post :bulk, to: "notifications#bulk_create"
     end
