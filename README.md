@@ -19,7 +19,8 @@ This Rails application implements a scalable notification system that supports d
 7. [Development](#development)
 8. [Extending the System](#extending-the-system)
 9. [Design Highlights](#design-highlights)
-10. [Known Improvements](#known-improvements)
+10. [Model Relationships](#model-relationships)
+11. [Known Improvements](#known-improvements)
 
 ---
 
@@ -122,6 +123,20 @@ Deletes the specified preference.
 
 ## Notification Lifecycle
 
+### Diagram
+
+```mermaid
+graph TD
+  A(["Notification Created (status: pending)"]) --> B[ManagerJob Enqueued]
+  B --> C[ManagerJob Performs]
+  C --> D[Finds Sender Class]
+  D --> E[Attempts Delivery]
+  E -->|Success| F[Update Status to sent]
+  E -->|Failure| G[Update Status to failed]
+```
+
+This diagram illustrates the lifecycle of a notification from creation to delivery and final status update.
+
 1. A notification is created with status `pending`.
 2. A background job (`Notifications::ManagerJob`) is scheduled.
 3. The job finds the `pending` notification and sends it via the appropriate `Sender` class.
@@ -191,6 +206,37 @@ To add a new channel (e.g., in-app):
 - Respect for user preferences per channel
 - Background job-based architecture
 - Easily extendable for new delivery methods
+- Use of UUIDs as primary keys to ensure horizontal scalability, enabling easier sharding and avoiding potential ID collisions across distributed systems.
+
+---
+
+## Model Relationships
+
+```mermaid
+classDiagram
+  class User {
+    +UUID id
+    +string email
+  }
+
+  class Notification {
+    +UUID id
+    +UUID user_id
+    +string content
+    +string channel
+    +string status
+  }
+
+  class UserNotificationPreference {
+    +UUID id
+    +UUID user_id
+    +string channel
+    +jsonb preferences
+  }
+
+  User "1" --> "many" Notification : has_many
+  User "1" --> "many" UserNotificationPreference : has_many
+```
 
 ---
 

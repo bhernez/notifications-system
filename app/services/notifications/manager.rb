@@ -27,6 +27,7 @@ module Notifications
       sender = retrieve_sender(notification)
       return false unless sender.present?
 
+      notification.sending!
       sender.send_notification(notification)
             .then { |result| result ? notification.mark_as_sent! : notification.error! }
     end
@@ -49,6 +50,13 @@ module Notifications
       allowed_styles = preference.preferences["style"]
       return false if allowed_styles.present? && !allowed_styles.include?(notification.style)
 
+      # Throttling logic could be added here
+      # For example, if the user has received a notification in the last 24 hours, do not send
+      # This could also be a separate class that handles the throttling logic
+      # (for now, we will always send the notification)
+      # Example:
+      # return false if user.received_notification_in_last_24_hours?(notification.channel, notification.style)
+
       true
     end
 
@@ -57,6 +65,8 @@ module Notifications
       # or style. It returns an instance of a subclass of Notifications::Sender::Base
       case notification.channel
       when Notification.channels[:sms] then Notifications::Sender::Sms.new
+      # when Notification.channels[:email] then Notifications::Sender::Email.new
+      # when Notification.channels[:push] then Notifications::Sender::Push.new
       else nil
       end
     end
