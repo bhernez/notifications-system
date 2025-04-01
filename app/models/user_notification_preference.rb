@@ -13,8 +13,9 @@
 class UserNotificationPreference < ApplicationRecord
   belongs_to :user
 
-  enum :channel, Notification.channels
+  enum :channel, Notification.channels, validate: true
 
+  validates :preferences, presence: true
   # Depending on how the system evolves, this could either allow or not multiple preferences per channel
   # validate_uniqueness_of :channel, scope: :user_id
 

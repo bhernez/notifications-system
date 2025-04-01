@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :notifications, only: [ :show, :create ] do
+  resources :notifications, only: [:show, :create] do
     collection do
       post :bulk, to: "notifications#bulk_create"
     end
+  end
+
+  scope "user/:user_id" do
+    resources :notification_preferences
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
