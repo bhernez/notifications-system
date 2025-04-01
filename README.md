@@ -2,7 +2,26 @@
 
 ## Overview
 
-This Rails application implements a scalable notification system that supports delivering messages to users via multiple channels (SMS, Email, Push). The system is designed for extensibility, respects user preferences, and offloads delivery to background jobs for asynchronous processing.
+This Rails application implements a scalable notification system that supports delivering messages to users via multiple channels (SMS, Email, Push). It is designed for extensibility, respects user preferences, and uses background jobs for asynchronous processing.
+
+---
+
+## Table of Contents
+
+1. [Requirements](#requirements)
+2. [Setup](#setup)
+3. [API Endpoints](#api-endpoints)
+   - [Notifications](#notifications)
+   - [User Notification Preferences](#user-notification-preferences)
+4. [Notification Lifecycle](#notification-lifecycle)
+5. [User Preferences](#user-preferences)
+6. [Background Job System](#background-job-system)
+7. [Development](#development)
+8. [Extending the System](#extending-the-system)
+9. [Design Highlights](#design-highlights)
+10. [Known Improvements](#known-improvements)
+
+---
 
 ## Requirements
 
@@ -12,6 +31,8 @@ This Rails application implements a scalable notification system that supports d
 - Redis (for job scheduling)
 - Async Adapter (Rails 7+ default)
 
+---
+
 ## Setup
 
 ```bash
@@ -19,15 +40,17 @@ bundle install
 bin/rails db:setup
 ```
 
-## Usage
+---
 
-### API Endpoints
+## API Endpoints
+
+### Notifications
 
 #### `POST /notifications`
 
 Creates a notification for a single user.
 
-Example payload:
+**Payload Example**:
 ```json
 {
   "user_id": "uuid-or-id",
@@ -39,9 +62,9 @@ Example payload:
 
 #### `POST /notifications/bulk`
 
-Creates notifications for multiple users at once using the `BulkSendNotification` command.
+Creates notifications for multiple users using the `BulkSendNotification` command.
 
-Example payload:
+**Payload Example**:
 ```json
 {
   "user_ids": ["uuid1", "uuid2"],
@@ -55,18 +78,62 @@ Example payload:
 
 Returns the status and metadata of a given notification.
 
-### Notification Lifecycle
-
-1. A notification is created with status `pending`.
-2. A background job (`Notifications::ManagerJob`) is scheduled.
-3. The job finds the `pending` notification and sends it via the correct `Sender` class.
-4. The notification status is updated to `sent` or `failed`.
+---
 
 ### User Notification Preferences
 
-User preferences are stored in the `UserNotificationPreference` model and allow for per-channel configuration:
+Manage a user's per-channel notification preferences.
 
-Example:
+#### `GET /user/:user_id/notification_preferences`
+
+Returns all preferences for the specified user.
+
+#### `GET /user/:user_id/notification_preferences/:id`
+
+Returns a specific preference.
+
+#### `POST /user/:user_id/notification_preferences`
+
+Creates a new preference.
+
+**Payload Example**:
+```json
+{
+  "user_notification_preference": {
+    "channel": "sms",
+    "preferences": {
+      "enabled": true,
+      "style": ["alert", "reminder"],
+      "number": "+1234567890"
+    }
+  }
+}
+```
+
+#### `PATCH /user/:user_id/notification_preferences/:id`
+
+Updates a specific preference. Accepts the same payload as `POST`.
+
+#### `DELETE /user/:user_id/notification_preferences/:id`
+
+Deletes the specified preference.
+
+---
+
+## Notification Lifecycle
+
+1. A notification is created with status `pending`.
+2. A background job (`Notifications::ManagerJob`) is scheduled.
+3. The job finds the `pending` notification and sends it via the appropriate `Sender` class.
+4. The notification status is updated to `sent` or `failed`.
+
+---
+
+## User Preferences
+
+User preferences are stored in the `UserNotificationPreference` model and allow for per-channel configuration.
+
+**Example**:
 ```json
 {
   "channel": "sms",
@@ -77,13 +144,17 @@ Example:
 }
 ```
 
-These preferences are respected during delivery — if a user has disabled a channel or filtered styles, the notification is skipped.
+These preferences are respected during delivery — if a user has disabled a channel or limited styles, the notification is skipped.
 
-### Background Job System
+---
+
+## Background Job System
 
 - Uses ActiveJob's Async adapter.
-- Each notification is handled individually via `Notifications::ManagerJob`.
-- Background jobs ensure scalability and fault isolation.
+- Each notification is processed individually via `Notifications::ManagerJob`.
+- Background jobs ensure decoupled, reliable delivery.
+
+---
 
 ## Development
 
@@ -95,34 +166,41 @@ bundle exec rails test
 
 Includes tests for:
 
-- API endpoints (`NotificationsController`)
+- API endpoints (`NotificationsController`, `NotificationPreferencesController`)
 - Command logic (`BulkSendNotification`)
 - Delivery jobs (`ManagerJob`)
 - Preference-based filtering
 
-### Extending the System
+---
+
+## Extending the System
 
 To add a new channel (e.g., in-app):
 
-1. Create a new sender class in `app/lib/notifications/sender/<channel>.rb`.
-2. Update `UserNotificationPreference` to include the new channel.
-3. Update validation logic in `BulkSendNotification::Form` if necessary.
-4. Plug in the sender via `Notifications::Manager`.
+1. Create a sender class in `app/lib/notifications/sender/<channel>.rb`.
+2. Update `UserNotificationPreference` to accept the new channel.
+3. Update `BulkSendNotification::Form` with validation logic.
+4. Add handling logic to `Notifications::Manager`.
+
+---
 
 ## Design Highlights
 
 - Command pattern via `CommandBase` and `CommandForm`
-- Dynamic form validation
-- Per-user channel preferences
-- Job-based delivery queue
-- Easily extensible architecture
+- Declarative, flexible validation
+- Respect for user preferences per channel
+- Background job-based architecture
+- Easily extendable for new delivery methods
+
+---
 
 ## Known Improvements (WIP)
 
 - Add throttling or deduplication filters
 - Batch job execution for bulk messages
-- Retry or fallback mechanism for failed deliveries
-- API authentication and rate-limiting
+- Retry or fallback mechanisms
+- API authentication and rate limiting
 
 ---
+
 Built for scalability, tested for reliability, and designed for growth.
