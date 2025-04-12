@@ -27,14 +27,9 @@ module Notifications
     attr_reader :notification, :validator, :sender_factory
 
     def deliver_notification(result)
-      begin
-        sender = find_sender
-        delivery = DeliveryService.new(notification, sender).deliver
-        StatusUpdater.new(notification).update(delivery)
-        result.delivery = delivery
-      rescue UnsupportedChannelError => e
-        result.add_errors(e.message)
-      end
+      delivery = DeliveryService.new(notification, find_sender).deliver
+      StatusUpdater.new(notification).update(delivery)
+      result.delivery = delivery
     end
 
     def find_sender
