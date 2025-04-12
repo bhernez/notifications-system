@@ -1,6 +1,6 @@
 module Notifications
   class ManagerJob < ApplicationJob
-    queue_as :default
+    queue_as :notifications
 
     # This job is responsible for orchestrating the delivery of a single Notification.
     # It is enqueued from the `BulkSendNotification` command, usually with a short delay.
@@ -14,7 +14,14 @@ module Notifications
     # - It also allows retries and better visibility into job-level failures.
 
     def perform(notification_id)
-      retrieve_notification(notification_id)&.then { maybe_send(it) }
+      notification = Notification.find(notification_id)
+      result = Manager.process(notification)
+      
+      if result.success?
+        Rails.logger.info("Notification #{notification_id} delivered successfully")
+      else
+        Rails.logger.error("Notification #{notification_id} failed: #{result.errors.join(', ')}")
+      end
     end
 
     private
